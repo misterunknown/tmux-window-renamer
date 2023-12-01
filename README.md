@@ -1,7 +1,7 @@
 # tmux-window-renamer
 
 This tool can rename tmux windows while a parent command is running. The
-intented use case is to rename the current tmux window to the host name of a SSH
+intented use case is to rename the current tmux window to the hostname of a SSH
 session.
 
 ## Compile
