@@ -21,13 +21,14 @@ int main(int argc, char **argv) {
     }
 
     // Check if we're inside a tmux session
-    if (strcmp(getenv("TERM_PROGRAM"), "tmux") != 0) {
+    char *term_program = getenv("TERM_PROGRAM");
+    if (term_program == NULL || strcmp(term_program, "tmux") != 0) {
         exit(EXIT_SUCCESS);
     }
 
     // Rename the current tmux window to the given hostname
     char tmuxWindowRenameCommand[1024];
-    sprintf(tmuxWindowRenameCommand, "tmux rename-window '%s'", argv[1]);
+    snprintf(tmuxWindowRenameCommand, sizeof(tmuxWindowRenameCommand), "tmux rename-window '%s'", argv[1]);
     system(tmuxWindowRenameCommand);
 
     // Fork the process
